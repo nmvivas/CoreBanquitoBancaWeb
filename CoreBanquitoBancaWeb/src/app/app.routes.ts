@@ -24,39 +24,41 @@ export const routes: Routes = [
         component:SidebarComponent,
         children: [
             {
+                path:'tranferences',
+                component:TranferencesComponent
+            },
+            {
+                path:'tranferences-pago',
+                component:TranferencesPagoComponent
+            },
+            {
+                path:'tranferences-successful',
+                component:TranferencesSuccessfulComponent
+            },
+            {
+                path:'service-pay',
+                component:ServicePayComponent
+            },
+            {
+                path:'service-value',
+                component:ServiceValueComponent
+            },
+            {
+                path:'service-check',
+                component:ServiceCheckComponent
+            },
+            {
                 path: 'dashboard',
                 component:DashboardComponent
+            },
+            {
+                path:'service-successful',
+                component:ServiceSuccessfulComponent
             }
         ]
     },
-    {
-        path:'tranferences',
-        component:TranferencesComponent
-    },
-    {
-        path:'tranferences-pago',
-        component:TranferencesPagoComponent
-    },
-    {
-        path:'tranferences-successful',
-        component:TranferencesSuccessfulComponent
-    },
-    {
-        path:'service-pay',
-        component:ServicePayComponent
-    },
-    {
-        path:'service-value',
-        component:ServiceValueComponent
-    },
-    {
-        path:'service-check',
-        component:ServiceCheckComponent
-    },
-    {
-        path:'service-successful',
-        component:ServiceSuccessfulComponent
-    },
+    
+
 
 
 
