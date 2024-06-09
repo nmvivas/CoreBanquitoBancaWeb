@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="header">
+      <div class="logo">
+        <img src="/assets/logoNav.png" alt="logo" />
+      </div>
+      <div class="user-info">
+      <span>{{ userName }}</span>
+     <mat-icon >account_circle</mat-icon>
+      </div>
+    </div>
+    <div class="content">
+      <div class="sidebar">
+        <div class="mis_productos">
+        <mat-icon class="icon">menu</mat-icon><span class="mis_productos">MIS PRODUCTOS</span>
+      </div>
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+          <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+            <button mat-icon-button disabled></button>
+            {{node.name}}
+          </mat-tree-node>
+          <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+            <button mat-icon-button matTreeNodeToggle
+                    [attr.aria-label]="'Toggle ' + node.name">
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button>
+            {{node.name}}
+          </mat-tree-node>
+        </mat-tree>
+        <div class="logout">
+        <mat-icon class="icon">logout</mat-icon><a href="/login" class="mis_productos">Cerrar Sesion</a>
+        </div>
+      </div>
+  
+      <div class="main">
+        <div class="account-info">
+          <div class="service-pay">
+            <h5 class="service-tittle"> Pagos de servicios y facturas</h5>
+            <p>Paga a tiempo tus servicios básicos con tu cuenta de ahorros <br>a través de nuestro servicio de PAGOS</p>
+          </div>
+          <br>
+          <br>
+          <div>
+            <p>Busca por nombre la empresa y realiza el pago.</p>
+        </div>
+        <div>
+            <form class="search-form">
+                <mat-form-field class="search-full-width">
+                  <mat-label>escriba el nombre de la empresa</mat-label>
+                  <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    @for (option of filteredOptions | async; track option) {
+                      <mat-option [value]="option">{{option.name}}</mat-option>
+                    }
+                  </mat-autocomplete>
+                </mat-form-field>
+              </form>
+              
+        </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+

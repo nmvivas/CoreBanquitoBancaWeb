@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="header">
+    <div class="logo">
+      <img src="/assets/logoNav.png" alt="logo" />
+    </div>
+    <div class="user-info">
+    <span>{{ userName }}</span>
+   <mat-icon >account_circle</mat-icon>
+    </div>
+  </div>
+  <div class="content">
+    <div class="sidebar">
+      <div class="mis_productos">
+      <mat-icon class="icon">menu</mat-icon><span class="mis_productos">MIS PRODUCTOS</span>
+    </div>
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+          <button mat-icon-button disabled></button>
+          {{node.name}}
+        </mat-tree-node>
+        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+          <button mat-icon-button matTreeNodeToggle
+                  [attr.aria-label]="'Toggle ' + node.name">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+          {{node.name}}
+        </mat-tree-node>
+      </mat-tree>
+      <div class="logout">
+      <mat-icon class="icon">logout</mat-icon><a href="/login" class="mis_productos">Cerrar Sesion</a>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="account-info">
+        <div class="account-title">
+          CUENTA DE AHORRO TRANSACCIONAL
+        </div>
+        <div class="account-number">{{ accountNumber }}</div>
+      </div>
+      <div class="balance-card">
+        <div class="balance-title">Saldo Disponible</div>
+        <div class="balance-amount">{{ balance }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <router-outler></router-outler> -->
