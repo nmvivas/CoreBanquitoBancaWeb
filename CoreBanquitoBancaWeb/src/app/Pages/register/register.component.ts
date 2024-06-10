@@ -3,28 +3,29 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css'
 })
-export class LoginComponent {
-  username = new FormControl('');
+export class RegisterComponent {
+
+  identification = new FormControl('');
   password = new FormControl('');
 
   constructor( private router: Router) {}
 
   onSubmit = () => {
-    console.log(this.username.value);
+    console.log(this.identification.value);
     console.log(this.password.value);
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/register-user']);
     
     
   }
-
-  register = () => {
-    this.router.navigate(['register']);
+  returnLogin = () => {
+    this.router.navigate(['login']);
 
   }
+
 }

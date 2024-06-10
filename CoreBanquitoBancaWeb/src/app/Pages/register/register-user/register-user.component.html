@@ -1,0 +1,25 @@
+<main>
+    <section class="sectionH1">
+        <h1 class="titlePage"> BIENVENIDO A TU BANCA WEB</h1>
+        <section class="sectionImg">
+            <img src="/assets/blacklogo-BanQuito-bgwhite.png" alt="not found">
+            <h2 class="iconBanquito">BANCO<br>BANQUITO</h2>
+        </section>
+    </section>
+    <section class="sectionForm">
+        <div class="login-content">
+        <form class="login-form">
+            <label for="identification" class="formLabel">Crea un usuario:</label>
+            <input type="text" [formControl] = "identification">
+            <label for="password" class="formLabel" >Crea una contraseña:</label>
+            <input type="text" [formControl] = "password">
+            <label for="reviewPassword" class="formLabel" >Verifica la contraseña:</label>
+            <input type="text" [formControl] = "reviewPassword">
+            <input type="button" value="Continuar" (click)="onSubmit()" >
+            <section>
+            <button class="buttonRegister " (click)="returnLogin()" > Regresar a <br> Banca Web</button>
+        </section>
+        </form>
+    </div>
+    </section>
+</main>
