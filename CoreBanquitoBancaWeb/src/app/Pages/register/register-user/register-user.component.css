@@ -30,8 +30,9 @@ html {
     align-items: flex-start;
     justify-content: left;
     padding: 100px 50px;
-    max-width: 600px;
+    width: 500px;
     margin: 0px;
+    
   
   
   }
@@ -91,7 +92,7 @@ html {
     padding: 30%;
   }
   
-  input[type="submit"]:hover {
+  input[type="button"]:hover {
     background-color: #e9ad08;
   }
   
@@ -121,7 +122,7 @@ html {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 35px 50px;
+    margin: 35px 130px ;
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
