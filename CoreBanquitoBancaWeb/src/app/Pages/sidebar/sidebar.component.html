@@ -13,20 +13,15 @@
       <div class="mis_productos">
         <mat-icon class="icon">menu</mat-icon><span class="mis_productos">MIS PRODUCTOS</span>
       </div>
-      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-          <button mat-icon-button disabled></button>
-          {{node.name}}
-        </mat-tree-node>
-        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-          <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
-            <mat-icon class="mat-icon-rtl-mirror">
-              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-            </mat-icon>
-          </button>
-          {{node.name}}
-        </mat-tree-node>
-      </mat-tree>
+      <div>
+        <mat-icon> arrow_forward_ios </mat-icon><a href="tranferences"> TRANFERENCIAS DIRECTAS</a>
+      </div>
+      <br>
+      <br>
+      <div>
+        <mat-icon> arrow_forward_ios</mat-icon><a href="service-pay"> PAGOS DE SERVICIOS Y FACTURAS</a>
+      </div>
+      
       <div class="logout">
         <mat-icon class="icon">logout</mat-icon><a href="/login" class="mis_productos">Cerrar Sesion</a>
       </div>

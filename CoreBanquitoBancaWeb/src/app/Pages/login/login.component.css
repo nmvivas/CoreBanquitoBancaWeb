@@ -60,6 +60,10 @@ body {
   margin: 25px 0;
 }
 
+.input-login{
+  background-color: #FCBE18 ;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -76,7 +80,7 @@ input {
   margin: 14px 0;
 }
 
-input[type="submit"] {
+input[type="button"] {
   margin-top: 14%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: none;

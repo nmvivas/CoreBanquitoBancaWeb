@@ -159,4 +159,28 @@
 
   }
 
+  /* Button next and cancel  */
+
+  .footer{
+    margin-bottom: 400px ;
+    display: flex;
+  }
+
+  .button_clean{
+    width: 50%;
+    margin-top:50px ;
+    display: flex;
+
+  }
+
+  .button_next{
+    width: 50%;
+    margin-top:50px ;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .button_aling{
+    margin-left: auto;
+  }
   

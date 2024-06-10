@@ -47,24 +47,22 @@ export class SidebarComponent {
   }
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
-
-
-
 }
 
 interface ProductNode {
   name: string;
   children?: ProductNode[];
+  path?: string;
 }
 
 const TREE_DATA: ProductNode[] = [
   {
     name: 'TRANSFERENCIAS',
-    children: [{ name: 'Directas' }],
+    children: [{ name: 'Directas', path: 'tranferences' }],
   },
   {
     name: 'PAGOS DE SERVICOS',
-    children: [{ name: 'Pagos y Facturas' }],
+    children: [{ name: 'Pagos y Facturas', path: 'service-pay' }],
   },
   {
     name: 'MI PERFIL',

@@ -156,22 +156,25 @@ mat-tree-node {
 /* Button continuar y limpiar */
 .footer{
   margin-bottom: 400px ;
+  display: flex;
 }
 
 .button_clean{
   width: 50%;
   margin-top:50px ;
-  align-items: flex-start;
   display: flex;
-  flex-direction: column;
 
 }
 
 .button_next{
-  width: 100%;
-  align-items: flex-end;
+  width: 50%;
+  margin-top:50px ;
   display: flex;
-  flex-direction: column;
+  align-items: flex-end;
+}
+
+.button_aling{
+  margin-left: auto;
 }
 
 /* card transferences */

@@ -1,16 +1,26 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { routes } from '../../app.routes';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+export class LoginComponent {
+  username = new FormControl('');
+  password = new FormControl('');
 
+  constructor( private router: Router) {}
 
-  export class LoginComponent{
+  onSubmit = () => {
+    console.log(this.username.value);
+    console.log(this.password.value);
+    this.router.navigate(['/dashboard']);
+    
     
   }
+}
