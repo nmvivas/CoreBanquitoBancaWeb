@@ -10,11 +10,11 @@
         <div class="login-content">
         <form class="login-form">
             <label for="username" class="formLabel">Ingresa tu usuario:</label>
-            <input type="text" [formControl] = "username">
+            <input type="text"  id="userName" name="userName" required>
             <label for="password" class="formLabel" >Ingresa tu contraseña:</label>
-            <input type="password" [formControl] = "password">
+            <input type="password" id="password" name="password" required>
             <a class="label-small" href="">¿Olvidaste tu contraseña?</a>
-            <input type="button" value="Ingresar" (click)="onSubmit()" >
+            <input type="button" value="Ingresar" (click)="loginUser()" >
             <section>
             <label for="" >¿No estas registrado?</label>
             <button class="buttonRegister " (click)="register()"> Registrate en <br> Banca Web</button>

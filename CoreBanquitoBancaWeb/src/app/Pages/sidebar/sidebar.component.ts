@@ -6,19 +6,35 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule } from '@angular/material/tree';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { AuthenticationService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
   imports: [RouterOutlet, MatIconModule, MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule, MatTreeModule],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+  styleUrl: './sidebar.component.css',
 })
+
+
 export class SidebarComponent {
+  usuario: string = ''
+  authenticationService: any;
+  router: any;
+
+  logout() {
+    this.authenticationService.logout();
+    
+    console.log('Logout exitoso');
+    this.router.navigate([""]);
+  }
+
+
   accountNumber = '2205618154';
   balance = '$ 330.30';
   userName = 'JUANITO JOSÉ QUEZADA OLIVARES';
+  
 
   private _transformer = (node: ProductNode, level: number) => {
     return {
@@ -42,12 +58,13 @@ export class SidebarComponent {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
+
   constructor() {
     this.dataSource.data = TREE_DATA;
   }
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
-}
+ }
 
 interface ProductNode {
   name: string;
