@@ -38,7 +38,8 @@ body {
 
 .login-content p {
   font-size: 1.1rem;
-  margin-top: 5rem;
+  color: #000000;
+  font-weight: bold;
 }
 
 .login-content p strong {

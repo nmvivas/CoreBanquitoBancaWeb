@@ -1,5 +1,5 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,25 +16,45 @@ import { AuthenticationService } from '../../services/auth.service';
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
 })
-
-
-export class SidebarComponent {
-  usuario: string = ''
-  authenticationService: any;
-  router: any;
-
-  logout() {
-    this.authenticationService.logout();
-    
-    console.log('Logout exitoso');
-    this.router.navigate([""]);
-  }
-
+export class SidebarComponent implements OnInit {
 
   accountNumber = '2205618154';
   balance = '$ 330.30';
-  userName = 'JUANITO JOSÉ QUEZADA OLIVARES';
-  
+  userName: string = '';
+
+  usuario: string = '';
+  authenticationService: AuthenticationService;
+  router: Router;
+
+  constructor(authenticationService: AuthenticationService, router: Router) {
+    this.authenticationService = authenticationService;
+    this.router = router;
+    this.dataSource.data = TREE_DATA;
+  }
+
+  ngOnInit() {
+    this.setUserNameFromLocalStorage();
+  }
+
+  setUserNameFromLocalStorage() {
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      try {
+        const user = JSON.parse(userJson);
+        this.userName = user.fullName;
+      } catch (error) {
+        console.error('Error parsing JSON from localStorage', error);
+      }
+    } else {
+      console.error('No user found in localStorage');
+    }
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    console.log('Logout exitoso');
+    this.router.navigate([""]);
+  }
 
   private _transformer = (node: ProductNode, level: number) => {
     return {
@@ -58,13 +78,8 @@ export class SidebarComponent {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-
-  constructor() {
-    this.dataSource.data = TREE_DATA;
-  }
-
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
- }
+}
 
 interface ProductNode {
   name: string;
@@ -85,7 +100,6 @@ const TREE_DATA: ProductNode[] = [
     name: 'MI PERFIL',
     children: [],
   },
-
 ];
 
 interface ExampleFlatNode {

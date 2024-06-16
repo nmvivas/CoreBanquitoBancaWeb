@@ -19,15 +19,14 @@ export class AuthenticationService {
 
     return this.http.put(this.loginURL, body, { headers }).pipe(
       map(response => {
-        console.log(response);
         localStorage.setItem('user', JSON.stringify(response));
         return response;
       }),
       catchError(error => {
         if (error.status === 400) {
-          return throwError(() => new Error('Login fallido: credenciales incorrectas.'));
+          return throwError(() => new Error('FAILED LOGIN'));
         } else {
-          return throwError(() => new Error('Login fallido: error en el servidor.'));
+          return throwError(() => new Error('SUCCESS LOGIN'));
         }
       })
     );
@@ -41,12 +40,4 @@ export class AuthenticationService {
     return localStorage.getItem('user') !== null;
   }
 
-  /*login(userName: string, password: string): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const body = {"userName":userName,"password":password}
-    
-
-    return this.http.put(this.loginUrl, body, { headers });
-
-  }*/
 }
