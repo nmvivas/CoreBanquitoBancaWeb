@@ -9,8 +9,9 @@ import { Observable, catchError, map, throwError } from 'rxjs';
 export class AuthenticationService {
 
   //ENDPOINT
-  private loginURL = 'http://localhost:8080/login'; 
-
+  //'http://localhost:8080/login'; 
+  private loginURL = 'http://corebanquito-bank.us-east-1.elasticbeanstalk.com/login'
+  
 
   constructor(private http: HttpClient) { }
   login(userName: string, password: string): Observable<any> {

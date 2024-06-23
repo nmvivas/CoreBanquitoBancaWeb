@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTreeModule } from '@angular/material/tree';
 import { Router, RouterOutlet } from '@angular/router';
+import { DataSharingService } from '../../../services/accountDetails.service';
+
 
 @Component({
   selector: 'app-tranferences-pago',
@@ -21,17 +23,25 @@ import { Router, RouterOutlet } from '@angular/router';
   templateUrl: './tranferences-pago.component.html',
   styleUrl: './tranferences-pago.component.css'
 })
-export class TranferencesPagoComponent {
+export class TranferencesPagoComponent implements OnInit {
+
   
-  constructor(private router: Router){
+  constructor(private router: Router, private dataSharingService: DataSharingService){
   }
 
-  accountNumber = '2205618154';
-  balance = '$ 330.30';
-  userName = 'JUANITO JOSÉ QUEZADA OLIVARES';
-  userAcreditor = 'MIRIAM SELENA ORTIZ CAMPOS'
-  valueAcreditor ='$ 200.00'
-  accountAcreditor = '2204578936'
+  number = '';
+  currentBalance = '';
+  beneficiario = '';
+  monto ='';
+  cuenta = '';
+
+  ngOnInit(): void {
+    this.number = this.dataSharingService.getAccountNumber();
+    this.currentBalance = this.dataSharingService.getAccountBalance();
+    this.beneficiario = this.dataSharingService.getTransferenciaData().beneficiario;
+    this.monto = this.dataSharingService.getTransferenciaData().monto;
+    this.cuenta = this.dataSharingService.getTransferenciaData().cuenta;
+  }
 
   redirectToNext = () => {
     this.router.navigate(['tranferences-successful']);

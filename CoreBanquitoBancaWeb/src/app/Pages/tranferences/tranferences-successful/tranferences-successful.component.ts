@@ -5,29 +5,48 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTreeModule } from '@angular/material/tree';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { DataSharingService } from '../../../services/accountDetails.service';
 
 @Component({
   selector: 'app-tranferences-successful',
   standalone: true,
-  imports: [RouterOutlet, 
-    MatIconModule, 
-    MatFormFieldModule, 
-    MatSelectModule, 
-    MatInputModule, 
-    FormsModule, 
+  imports: [RouterOutlet,
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    FormsModule,
     MatTreeModule
   ],
   templateUrl: './tranferences-successful.component.html',
   styleUrl: './tranferences-successful.component.css'
 })
 export class TranferencesSuccessfulComponent {
-  accountNumber = '2205618154';
-  balance = '$ 330.30';
-  userName = 'JUANITO JOSÉ QUEZADA OLIVARES';
-  userAcreditor = 'MIRIAM SELENA ORTIZ CAMPOS'
-  valueAcreditor ='$ 200.00'
-  accountAcreditor = '2204578936'
+  fechaActual: string;
+
+  constructor(private router: Router, private dataSharingService: DataSharingService) {
+    const hoy = new Date();
+    this.fechaActual = `${hoy.getDate()}/${hoy.getMonth() + 1}/${hoy.getFullYear()}`;
+  }
+
+
+  number = '';
+  userName = '';
+  currentBalance = '';
+  beneficiario = '';
+  monto = '';
+  cuenta = '';
+
+  ngOnInit(): void {
+    this.number = this.dataSharingService.getAccountNumber();
+    this.currentBalance = this.dataSharingService.getAccountBalance();
+    this.beneficiario = this.dataSharingService.getTransferenciaData().beneficiario;
+    this.monto = this.dataSharingService.getTransferenciaData().monto;
+    this.cuenta = this.dataSharingService.getTransferenciaData().cuenta;
+  }
+
+
 
 
 }

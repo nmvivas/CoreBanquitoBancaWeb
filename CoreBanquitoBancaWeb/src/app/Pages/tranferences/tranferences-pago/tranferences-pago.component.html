@@ -8,9 +8,9 @@
                 <div class="account-title">
                     CUENTA DE AHORRO TRANSACCIONAL
                 </div>
-                <div class="account-number">{{ accountNumber }} </div>
+                <div class="account-number">{{ number }} </div>
                 <section class="button_next">
-                    <div class="balance-amount">{{ balance }}</div>
+                    <div class="balance-amount"> $ {{ currentBalance }}</div>
                 </section>
             </div>
             <div>
@@ -18,11 +18,11 @@
             </div>
             <div class="account-info">
                 <div class="account-title">
-                    {{userAcreditor}}
+                    {{beneficiario}}
                 </div>
-                <div class="account-number">{{ accountAcreditor }} </div>
+                <div class="account-number"> {{ cuenta }} </div>
                 <section class="button_next">
-                    <div class="balance-amount">{{ valueAcreditor }}</div>
+                    <div class="balance-amount"> $ {{ monto }}</div>
                 </section>
             </div>
             <div class="footer">

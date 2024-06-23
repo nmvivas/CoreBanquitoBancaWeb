@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/auth.service';
+import { response } from 'express';
+import { SessionService } from '../../services/session.Service';
 
 @Component({
   selector: 'app-login',
@@ -17,11 +19,13 @@ export class LoginComponent {
   primeraVisita = true;
   accesoValidacion = false;
 
-  constructor(private router: Router, private authenticationService: AuthenticationService) { }
+  constructor(private router: Router, private authenticationService: AuthenticationService,  private sessionService: SessionService) { }
 
   loginUser() {
     this.authenticationService.login(this.userName, this.password).subscribe({
-      next: () => {
+      next: (response) => {
+        console.log(response.email);
+        this.sessionService.setEmail(response.email); // Guarda el email en el servicio
         this.router.navigate(["/dashboard"]).then();
       },
       error: (err) => {
