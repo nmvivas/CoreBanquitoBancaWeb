@@ -27,11 +27,13 @@ export class ServiceValueComponent {
   number = '';
   currentBalance = '';
   company: any = {};
+  idCompany: any = {};
   contrapartida = '';
   deuda = '';
   dueDate = '';
   debtorName = '';
   identificacion = '';
+  
   private debounceTimer?: number;
 
   onContrapartidaChange(value: string): void {
@@ -48,15 +50,16 @@ export class ServiceValueComponent {
   ngOnInit() {
     this.companyShareService.currentCompany.subscribe(company => {
       this.company = company?.companyName;
+      this.idCompany = company?.id;
       console.log(this.company);
+      console.log(this.idCompany);
     });
     this.number = this.dataSharingService.getAccountNumber();
     this.currentBalance = this.dataSharingService.getAccountBalance();
   }
 
   fetchDebtorData() {
-    const companyId = '14';
-    this.receivablesService.getOrdersItems(this.contrapartida, companyId).subscribe(data => {
+    this.receivablesService.getOrdersItems(this.contrapartida, this.idCompany).subscribe(data => {
       if (data && data.length > 0) {
         console.log(data);
         this.deuda = data[0].owedAmount;

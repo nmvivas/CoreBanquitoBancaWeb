@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, catchError, of, throwError } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 
 
@@ -14,39 +14,39 @@ export class ClientService {
 
   // Dentro de ClientService
 
-  getClientIdByEmail(email: string): Observable<any> {
-    if (email === "nmvivas@gmail.com") {
-      return of({ clientId: "2" });
-    } else {
-      return of({ error: "Email not found" }); // O usar throwError para simular un error
-    }
+  // getClientIdByEmail(email: string): Observable<any> {
+  //   if (email === "nmvivas@gmail.com") {
+  //     return of({ clientId: "2" });
+  //   } else {
+  //     return of({ error: "Email not found" }); // O usar throwError para simular un error
+  //   }
 
+  // }
+
+  getClientIdByEmail(email: string): Observable<any> {
+    return this.http.get(`${this.CLIENT_URL}${email}`).pipe(
+      catchError(error => {
+        console.error('Error fetching client by email:', error);
+        return throwError(() => error);
+      })
+    );
   }
 
-  // getClientIdByEmail(email: string): Observable<any> {
-  //   return this.http.get(`${this.clientURL}${email}`).pipe(
-  //     catchError(error => {
-  //       console.error('Error fetching client by email:', error);
-  //       return throwError(() => error);
-  //     })
-  //   );
-  // }
-
-  // async showClientByEmailInConsole(email: string): Promise<void> {
-  //   this.getClientIdByEmail(email).pipe(
-  //     catchError(error => {
-  //       console.error('Error fetching client by email:', error);
-  //       return throwError(() => error);
-  //     })
-  //   ).subscribe({
-  //     next: (data) => {
-  //       console.log(data);
-  //     },
-  //     error: (error) => {
-  //       console.error('Error fetching client data:', error);
-  //     }
-  //   });
-  // }
+  async showClientByEmailInConsole(email: string): Promise<void> {
+    this.getClientIdByEmail(email).pipe(
+      catchError(error => {
+        console.error('Error fetching client by email:', error);
+        return throwError(() => error);
+      })
+    ).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (error) => {
+        console.error('Error fetching client data:', error);
+      }
+    });
+  }
 
 
 }

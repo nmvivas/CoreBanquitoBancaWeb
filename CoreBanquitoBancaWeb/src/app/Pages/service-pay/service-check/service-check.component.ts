@@ -25,27 +25,14 @@ import { SharedDataService } from '../../../services/payDetails.service';
 export class ServiceCheckComponent {
   company: any = {};
   contrapartida = '';
-  deuda = '';
+  deuda: number = 0;
   deudor = '';
   identificacion = '';
   dueDate = '';
   total: number = 0;
-  comision: number = 0;
-  iva: number = 0;
+  comision: number = 0.40;
+  iva: number = 0.15;
   
-  
-
-
-  calcularTotal(deuda: number): void { // Cambio de 'number' a 'void' ya que actualizaremos la propiedad directamente
-    this.comision = 0.40;
-    this.iva = 1.15;
-    this.total = (deuda + this.comision) * this.iva;
-  }
-
-
-
-
-
   constructor(private router: Router, private sharedDataService: SharedDataService) {
     this.company = this.sharedDataService.getSharedData().company;
     this.contrapartida = this.sharedDataService.getSharedData().contrapartida;
@@ -55,11 +42,22 @@ export class ServiceCheckComponent {
     this.dueDate = this.sharedDataService.getSharedData().dueDate;
 
   }
+ 
+  calcularTotal(deuda: number): void { // Cambio de 'number' a 'void' ya que actualizaremos la propiedad directamente
+    this.total = (deuda + this.comision) * 1.15;
+    console.log(deuda);
+    console.log(this.total + ' total');
+  }
+
+  ngOnInit() {
+    this.calcularTotal(this.deuda);
+  }
 
 
 
 
   redirectToNext = () => {
+    
     this.router.navigate(['service-successful']);
 
   }
