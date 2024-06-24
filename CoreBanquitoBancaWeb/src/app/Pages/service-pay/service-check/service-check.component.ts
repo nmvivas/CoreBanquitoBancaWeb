@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTreeModule } from '@angular/material/tree';
 import { Router, RouterOutlet } from '@angular/router';
+import { SharedDataService } from '../../../services/payDetails.service';
 
 @Component({
   selector: 'app-service-check',
@@ -22,15 +23,18 @@ import { Router, RouterOutlet } from '@angular/router';
   styleUrl: './service-check.component.css'
 })
 export class ServiceCheckComponent {
-  accountNumber = '2205618154';
-  balance = '$ 330.30';
-  userName = 'JUANITO JOSÉ QUEZADA OLIVARES';
-  userAcreditor = 'MIRIAM SELENA ORTIZ CAMPOS'
-  valueAcreditor ='$ 200.00'
-  accountAcreditor = '2204578936'
-  idDebitor = '12345780585'
+  company: any = {};
+  contrapartida = '';
+  deuda = '';
+  deudor = '';
+  identificacion = '';
+  DueDate = '';
 
-  constructor(private router: Router){
+
+  constructor(private router: Router,private sharedDataService: SharedDataService){
+    this.company = this.sharedDataService.getSharedData().company;
+    this.contrapartida = this.sharedDataService.getSharedData().contrapartida;
+    console.log(this.sharedDataService.getSharedData().contrapartida);
 
   }
 

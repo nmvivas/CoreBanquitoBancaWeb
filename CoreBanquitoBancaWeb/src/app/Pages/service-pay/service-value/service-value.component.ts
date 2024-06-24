@@ -10,6 +10,7 @@ import { CompanyShareService } from '../../../services/companyDetails.service';
 import { CommonModule } from '@angular/common';
 import { DataSharingService } from '../../../services/accountDetails.service';
 import { ReceivablesService } from '../../../services/receivables.service';
+import { SharedDataService } from '../../../services/payDetails.service';
 
 @Component({
   selector: 'app-service-value',
@@ -29,7 +30,7 @@ export class ServiceValueComponent {
   contrapartida = '';
   deuda = '';
 
-  constructor(private router: Router, private companyShareService: CompanyShareService, private dataSharingService: DataSharingService, private receivablesService: ReceivablesService) {
+  constructor(private sharedDataService: SharedDataService, private router: Router, private companyShareService: CompanyShareService, private dataSharingService: DataSharingService, private receivablesService: ReceivablesService) {
   }
   ngOnInit() {
     this.companyShareService.currentCompany.subscribe(company => {
@@ -41,23 +42,29 @@ export class ServiceValueComponent {
   }
 
   fetchDebtorData() {
-    const companyId = '14'; 
+    const companyId = '14';
     this.receivablesService.getOrdersItems(this.contrapartida, companyId).subscribe(data => {
       if (data && data.length > 0) {
         console.log(data);
         this.deuda = data[0].owedAmount;
         console.log(this.deuda);
-      }
-    });
-  }
-
-  redirectToNext = () => {
-    this.router.navigate(['service-check']);
-
-  }
-  redirectToCancel = () => {
-    this.router.navigate(['dashboard']);
-
-  }
-
+       // Almacenar los datos necesarios en el servicio compartido
+       this.sharedDataService.setSharedData({
+        companyName: this.company,
+        contrapartida: this.contrapartida,
+        data: data // Almacena todo el arreglo
+      });
+    }
+  });
 }
+
+      redirectToNext = () => {
+        this.router.navigate(['service-check']);
+
+      }
+      redirectToCancel = () => {
+        this.router.navigate(['dashboard']);
+
+      }
+
+    }
