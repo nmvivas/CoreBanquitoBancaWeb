@@ -12,16 +12,12 @@
           <p>Busca por nombre la empresa y realiza el pago.</p>
         </div>
         <div>
-          <form class="search-form">
-
-
-            <mat-form-field>
+            <mat-form-field class="wide-form-field ">
               <mat-label>Empresas</mat-label>
               <mat-select [formControl]="myControl">
                 <mat-option *ngFor="let company of companies" [value]="company.id">{{company.companyName}}</mat-option>
               </mat-select>
             </mat-form-field>
-          </form>
         </div>
       </div>
       <div class="footer">

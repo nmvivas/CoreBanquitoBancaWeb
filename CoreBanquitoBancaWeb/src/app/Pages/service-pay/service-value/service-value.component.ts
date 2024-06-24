@@ -29,6 +29,19 @@ export class ServiceValueComponent {
   company: any = {};
   contrapartida = '';
   deuda = '';
+  dueDate = '';
+  debtorName = '';
+  identificacion = '';
+  private debounceTimer?: number;
+
+  onContrapartidaChange(value: string): void {
+    this.contrapartida = value;
+    if (this.debounceTimer) clearTimeout(this.debounceTimer);
+    this.debounceTimer = window.setTimeout(() => {
+      this.fetchDebtorData();
+    }, 200); // Ajusta el tiempo de espera según sea necesario
+  }
+
 
   constructor(private sharedDataService: SharedDataService, private router: Router, private companyShareService: CompanyShareService, private dataSharingService: DataSharingService, private receivablesService: ReceivablesService) {
   }
@@ -47,12 +60,18 @@ export class ServiceValueComponent {
       if (data && data.length > 0) {
         console.log(data);
         this.deuda = data[0].owedAmount;
-        console.log(this.deuda);
+        this.dueDate = data[0].dueDate;
+        this.debtorName = data[0].debtorName;
+        this.identificacion = data[0].identification;
+
        // Almacenar los datos necesarios en el servicio compartido
        this.sharedDataService.setSharedData({
         companyName: this.company,
         contrapartida: this.contrapartida,
-        data: data // Almacena todo el arreglo
+        debtorName: this.debtorName,
+        identificacion: this.identificacion,
+        dueDate: this.dueDate,
+        deuda: this.deuda,
       });
     }
   });

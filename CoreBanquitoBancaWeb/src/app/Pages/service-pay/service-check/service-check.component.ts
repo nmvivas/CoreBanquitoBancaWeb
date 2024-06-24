@@ -11,12 +11,12 @@ import { SharedDataService } from '../../../services/payDetails.service';
 @Component({
   selector: 'app-service-check',
   standalone: true,
-  imports: [RouterOutlet, 
-    MatIconModule, 
-    MatFormFieldModule, 
-    MatSelectModule, 
-    MatInputModule, 
-    FormsModule, 
+  imports: [RouterOutlet,
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    FormsModule,
     MatTreeModule
   ],
   templateUrl: './service-check.component.html',
@@ -28,23 +28,44 @@ export class ServiceCheckComponent {
   deuda = '';
   deudor = '';
   identificacion = '';
-  DueDate = '';
+  dueDate = '';
+  total: number = 0;
+  comision: number = 0;
+  iva: number = 0;
+  
+  
 
 
-  constructor(private router: Router,private sharedDataService: SharedDataService){
+  calcularTotal(deuda: number): void { // Cambio de 'number' a 'void' ya que actualizaremos la propiedad directamente
+    this.comision = 0.40;
+    this.iva = 1.15;
+    this.total = (deuda + this.comision) * this.iva;
+  }
+
+
+
+
+
+  constructor(private router: Router, private sharedDataService: SharedDataService) {
     this.company = this.sharedDataService.getSharedData().company;
     this.contrapartida = this.sharedDataService.getSharedData().contrapartida;
-    console.log(this.sharedDataService.getSharedData().contrapartida);
+    this.deuda = this.sharedDataService.getSharedData().deuda;
+    this.deudor = this.sharedDataService.getSharedData().debtorName;
+    this.identificacion = this.sharedDataService.getSharedData().identificacion;
+    this.dueDate = this.sharedDataService.getSharedData().dueDate;
 
   }
 
+
+
+
   redirectToNext = () => {
-  this.router.navigate(['service-successful']);
+    this.router.navigate(['service-successful']);
 
   }
   redirectToCancel = () => {
     this.router.navigate(['dashboard']);
-  
+
   }
 
 }
