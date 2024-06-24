@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="content">
+    <div class="main">
+      <div class="account-info">
+        <div class="service-pay">
+          <h5 class="service-tittle"> Pagos de servicios y facturas</h5>
+          <p>Paga a tiempo tus servicios básicos con tu cuenta de ahorros <br>a través de nuestro servicio de PAGOS</p>
+        </div>
+        <div class="account-info">
+          <div class="account-title">
+            CUENTA DE AHORRO TRANSACCIONAL
+          </div>
+          <div class="account-number">{{ number }} </div>
+          <section class="button_next">
+            <div class="balance-amount"> $ {{ currentBalance }}</div>
+          </section>
+        </div>
+        <br>
+        <section class="form_transferencia">
+          <div class="account-info">
+            <label for=""> Servicio: </label> <br>
+            <input type="text" value={{company}} readonly>
+            <br>
+            <label for=""> Numero de Contrapartida: </label> <br>
+            <input type="text" id="contrapartida" [ngModel]="contrapartida"
+              (ngModelChange)="onContrapartidaChange($event)">
+            <br>
+            <label for=""> Fecha de Vencimiento: {{dueDate}} </label> <br>
+            <div class="label-center">
+              <label for=""> Valor a pagar: $ {{deuda}}</label>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="footer">
+        <section class="button_clean">
+          <button class="mis_productos" (click)="redirectToCancel()"> Cancelar </button>
+        </section>
+        <section class="button_next">
+          <button class="mis_productos button_aling" (click)="redirectToNext()"> Continuar </button>
+        </section>
+
+      </div>
+
+    </div>
+  </div>
+</div>

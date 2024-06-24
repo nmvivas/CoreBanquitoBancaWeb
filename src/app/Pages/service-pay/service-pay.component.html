@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="content">
+    <div class="main">
+      <div class="account-info">
+        <div class="service-pay">
+          <h5 class="service-tittle"> Pagos de servicios y facturas</h5>
+          <p>Paga a tiempo tus servicios básicos con tu cuenta de ahorros <br>a través de nuestro servicio de PAGOS</p>
+        </div>
+        <br>
+        <br>
+        <div>
+          <p>Busca por nombre la empresa y realiza el pago.</p>
+        </div>
+        <div>
+            <mat-form-field class="wide-form-field ">
+              <mat-label>Empresas</mat-label>
+              <mat-select [formControl]="myControl">
+                <mat-option *ngFor="let company of companies" [value]="company.id">{{company.companyName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+        </div>
+      </div>
+      <div class="footer">
+        <section class="button_clean">
+          <button class="mis_productos" (click)="redirectToCancel()"> Cancelar </button>
+        </section>
+        <section class="button_next">
+          <button class="mis_productos button_aling" (click)="redirectToNext()"> Continuar </button>
+        </section>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>

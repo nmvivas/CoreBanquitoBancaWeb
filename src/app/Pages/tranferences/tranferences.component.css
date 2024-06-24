@@ -1,0 +1,179 @@
+.container {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffffff;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    width: 200px;
+    height: auto;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    width: 20%;
+  }
+  
+  
+  
+  .user-info span {
+    margin-right: 10px;
+  }
+  
+  .user-info img {
+    width: 30px;
+    height: auto;
+  }
+  
+  .content {
+    display: flex;
+    height: calc(100vh - 60px);
+    padding: 1%;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: #ffffff;
+    padding-right: 15px;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  
+  }
+  
+  .mis_productos {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    font-weight: bold;
+  }
+  
+  
+  mat-tree-node {
+    background-color: #ffffff;
+    color: #000;
+    flex-grow: 1;
+  }
+  
+  .logout {
+    margin-top: 400px;
+    display: flex;
+  }
+  
+  .logout .icon {
+    margin-right: 10px;
+  }
+  
+  .icon {
+    font-size: 30px;
+    margin: 5px 5px 0 0;
+  
+  }
+  .iconLogin{
+    font-size: 30px;
+  }
+  
+  .item-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .item-subtitle {
+    font-size: 0.9em;
+    color: #777;
+  }
+  
+  .main {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .account-info {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+  }
+
+  .account-info input {
+    border: 1px solid #ccc;
+    margin: 14px 0;
+    width: 75%;
+    border-radius: 4px;
+  }
+
+  .account-info label{
+    font-weight: bold;
+
+  }
+  
+  .account-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .account-number {
+    font-size: 1.2em;
+  }
+  
+  .balance-card {
+    background-color: #03B5CF;
+    padding: 20px;
+    border-radius: 10px;
+    width: 20%;
+  }
+  
+  .balance-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  .balance-amount {
+    font-size: 2em;
+  }
+
+  /* Button continuar y limpiar */
+  .footer{
+    margin-bottom: 400px ;
+    display: flex;
+  }
+
+  .button_clean{
+    width: 50%;
+    margin-top:50px ;
+    display: flex;
+
+  }
+
+  .button_next{
+    width: 50%;
+    margin-top:50px ;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .button_aling{
+    margin-left: auto;
+  }
+
+  
+
+

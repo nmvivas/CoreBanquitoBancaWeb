@@ -1,0 +1,25 @@
+<main>
+    <section class="sectionH1">
+        <h1 class="titlePage"> BIENVENIDO A TU BANCA WEB</h1>
+        <section class="sectionImg">
+            <img src="/assets/blacklogo-BanQuito-bgwhite.png" alt="not found">
+            <h2 class="iconBanquito">BANCO<br>BANQUITO</h2>
+        </section>
+    </section>
+    <section class="sectionForm">
+        <div class="login-content">
+        <form class="login-form">
+            <label for="username" class="formLabel">Ingresa tu usuario:</label>
+            <input type="text" [formControl] = "username">
+            <label for="password" class="formLabel" >Ingresa tu contraseña:</label>
+            <input type="password" [formControl] = "password">
+            <a class="label-small" href="">¿Olvidaste tu contraseña?</a>
+            <input type="button" value="Ingresar" (click)="onSubmit()" >
+            <section>
+            <label for="" >¿No estas registrado?</label>
+            <button class="buttonRegister " (click)="register()"> Registrate en <br> Banca Web</button>
+        </section>
+        </form>
+    </div>
+    </section>
+</main>

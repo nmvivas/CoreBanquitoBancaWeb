@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="content">
+        <div class="main">
+            <div class="account-info">
+                <div class="account-title">
+                    CUENTA DE AHORRO TRANSACCIONAL
+                </div>
+                <div class="account-number">{{ number }} </div>
+                <section class="button_next">
+                    <div class="balance-amount"> $ {{ currentBalance }}</div>
+                </section>
+            </div>
+            <section class="form_transferencia">
+                <div class="account-info">
+                    <label for="monto"> Monto: </label> <br>
+                    <input id="monto" type="text" [(ngModel)]="monto" >
+                    <br>
+                    <label for="beneficiario"> Beneficiario: </label> <br>
+                    <input id="beneficiario" type="text" [(ngModel)]="beneficiario">
+                    <br>
+                    <label for="cuenta" [(ngModel)]="cuenta"> Numero de Cuenta: </label> <br>
+                    <input id="cuenta" type="text">
+                </div>
+            </section>
+            <div class="footer">
+                <section class="button_clean">
+                        <button class="mis_productos" (click)="redirectToCancel()"> Cancelar </button>
+                </section>
+                <section class="button_next">
+                        <button class="mis_productos button_aling" (click)="realizarTransferencia()"> Continuar </button>
+                </section>
+            </div>
+
+        </div>
+    </div>
+</div>

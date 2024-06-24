@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="header">
+    <div class="logo">
+      <img src="/assets/logoNav.png" alt="logo" />
+    </div>
+    <div class="user-info">
+      <span>{{userName}}</span>
+      <mat-icon>account_circle</mat-icon>
+    </div>
+  </div>
+  <div class="content">
+    <div class="sidebar">
+      <div class="mis_productos">
+        <mat-icon class="icon">menu</mat-icon><span class="mis_productos">MIS PRODUCTOS</span>
+      </div>
+      <div>
+        <mat-icon> arrow_forward_ios </mat-icon><a href="tranferences"> TRANFERENCIAS DIRECTAS</a>
+      </div>
+      <br>
+      <br>
+      <div>
+        <mat-icon> arrow_forward_ios</mat-icon><a href="service-pay"> PAGOS DE SERVICIOS Y FACTURAS</a>
+      </div>
+      
+      <div class="logout">
+        <mat-icon class="icon">logout</mat-icon><a href="#" (click)="logout()" class="mis_productos">Cerrar Sesion</a>
+      </div>
+    </div>
+    <div class="main">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

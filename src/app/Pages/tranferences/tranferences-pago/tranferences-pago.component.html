@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="content">
+        <div class="main">
+            <div>
+                <p> DESDE: </p>
+            </div>
+            <div class="account-info">
+                <div class="account-title">
+                    CUENTA DE AHORRO TRANSACCIONAL
+                </div>
+                <div class="account-number">{{ number }} </div>
+                <section class="button_next">
+                    <div class="balance-amount"> $ {{ currentBalance }}</div>
+                </section>
+            </div>
+            <div>
+                <p> PARA:</p>
+            </div>
+            <div class="account-info">
+                <div class="account-title">
+                    {{beneficiario}}
+                </div>
+                <div class="account-number"> {{ cuenta }} </div>
+                <section class="button_next">
+                    <div class="balance-amount"> $ {{ monto }}</div>
+                </section>
+            </div>
+            <div class="footer">
+                <section class="button_clean">
+                        <button class="mis_productos" (click)="redirectToCancel()"> Editar </button>
+                </section>
+                <section class="button_next">
+                        <button class="mis_productos button_aling" (click)="redirectToNext()"> Pagar </button>
+                </section>
+            </div>
+
+        </div>
+    </div>
+</div>
