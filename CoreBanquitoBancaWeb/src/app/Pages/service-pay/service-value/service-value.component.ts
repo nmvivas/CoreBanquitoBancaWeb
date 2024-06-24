@@ -6,31 +6,53 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTreeModule } from '@angular/material/tree';
 import { Router, RouterOutlet } from '@angular/router';
+import { CompanyShareService } from '../../../services/companyDetails.service';
+import { CommonModule } from '@angular/common';
+import { DataSharingService } from '../../../services/accountDetails.service';
 
 @Component({
   selector: 'app-service-value',
   standalone: true,
-  imports: [RouterOutlet, MatIconModule, MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule, MatTreeModule],
+  imports: [CommonModule, RouterOutlet, MatIconModule, MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule, MatTreeModule],
   templateUrl: './service-value.component.html',
   styleUrl: './service-value.component.css'
 })
+
+
+
 export class ServiceValueComponent {
 
-  accountNumber = '2205618154';
-  balance = '$ 330.30';
-  userName = 'JUANITO JOSÉ QUEZADA OLIVARES';
 
-  constructor(private router: Router){
+
+  number = '';
+  currentBalance = '';
+  company: any = {};
+
+
+  constructor(private router: Router, private companyShareService: CompanyShareService, private dataSharingService: DataSharingService) {
 
   }
 
+
+  // En service-value.component.ts
+  ngOnInit() {
+    this.companyShareService.currentCompany.subscribe(company => {
+      this.company = company?.companyName;
+      console.log(this.company);
+    });
+    this.number = this.dataSharingService.getAccountNumber();
+    this.currentBalance = this.dataSharingService.getAccountBalance();
+
+  }
+
+
   redirectToNext = () => {
-  this.router.navigate(['service-check']);
+    this.router.navigate(['service-check']);
 
   }
   redirectToCancel = () => {
     this.router.navigate(['dashboard']);
-  
-    }
+
+  }
 
 }

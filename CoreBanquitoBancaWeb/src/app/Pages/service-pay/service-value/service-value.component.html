@@ -10,16 +10,16 @@
             <div class="account-title">
                 CUENTA DE AHORRO TRANSACCIONAL
             </div>
-            <div class="account-number">{{ accountNumber }} </div>
+            <div class="account-number">{{ number }} </div>
             <section class="button_next">
-                <div class="balance-amount">{{ balance }}</div>
+                <div class="balance-amount"> $ {{ currentBalance }}</div>
             </section>
         </div>
         <br>
         <section class="form_transferencia">
             <div class="account-info">
                 <label for=""> Servicio: </label> <br>
-                <input type="text"value="ULTRALINK" readonly >
+                <input type="text"value={{company}} readonly >
                 <br>
                 <label for=""> Numero de Contrapartida: </label> <br>
                 <input type="text" >

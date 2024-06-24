@@ -81,7 +81,7 @@ input {
   margin: 14px 0;
 }
 
-input[type="button"] {
+input[type="submit"] {
   margin-top: 14%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: none;

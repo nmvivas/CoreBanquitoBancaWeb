@@ -1,24 +1,21 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 
 })
 export class AuthenticationService {
-
-  //ENDPOINT
-  //'http://localhost:8080/login'; 
-  private loginURL = 'http://corebanquito-bank.us-east-1.elasticbeanstalk.com/login'
-  
+  private LOGIN_URL = environment.coreBankApiUrl + '/login'
 
   constructor(private http: HttpClient) { }
   login(userName: string, password: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = { userName, password };
 
-    return this.http.put(this.loginURL, body, { headers }).pipe(
+    return this.http.put(this.LOGIN_URL, body, { headers }).pipe(
       map(response => {
         localStorage.setItem('user', JSON.stringify(response));
         return response;

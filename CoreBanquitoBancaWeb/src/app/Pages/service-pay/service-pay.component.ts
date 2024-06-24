@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -8,8 +8,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTreeModule } from '@angular/material/tree';
 import { Router, RouterOutlet } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { Company } from '../../models/company.model';
+import { CompanyService } from '../../services/company.service';
+import { CompanyShareService } from '../../services/companyDetails.service';
 
 export interface User {
   name: string;
@@ -19,6 +20,7 @@ export interface User {
   selector: 'app-service-pay',
   standalone: true,
   imports: [RouterOutlet, 
+    CommonModule,
     MatIconModule, 
     MatFormFieldModule, 
     MatSelectModule, 
@@ -32,44 +34,41 @@ export interface User {
   styleUrl: './service-pay.component.css'
 })
 export class ServicePayComponent implements OnInit  {
-  constructor(private router: Router){
-
+  myControl = new FormControl<number | null>(null);
+  companies: Company[] = [];
+  filteredCompanies: any;
+  
+  constructor(private router: Router, private companyService: CompanyService,private companyShareService: CompanyShareService){
   }
 
   redirectToNext = () => {
-  this.router.navigate(['service-value']);
-
+    this.router.navigate(['service-value']);
   }
+
   redirectToCancel = () => {
     this.router.navigate(['dashboard']);
-  
-    }
-
-  
-  myControl = new FormControl<string | User>('');
-  options: User[] = [{name: 'ULTRALINK'}, {name: 'EMPRESA ELECTRICA'}, {name: 'TOUWOLF TECHNOLOGY'}];
-  filteredOptions: Observable<User[]> | undefined;
+  }
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.options.slice();
-      }),
-    );
+    this.companyService.getAll().subscribe(data => {
+      this.companies = data; // Asumiendo que `getAll()` retorna un Observable<Company[]>
+    });
+  
+    this.myControl.valueChanges.subscribe(id => {
+      const selectedCompany = this.companies.find(company => company.id === id);
+      if (selectedCompany) {
+        this.companyShareService.changeCompany(selectedCompany);
+      }
+    });
   }
 
-  displayFn(user: User): string {
-    return user && user.name ? user.name : '';
+  displayFn(company: Company): string {
+    return company?.companyName ?? "";
   }
 
-  private _filter(name: string): User[] {
+  private _filter(name: string): Company[] {
     const filterValue = name.toLowerCase();
-
-    return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
+    return this.companies.filter(option => option?.companyName?.toLowerCase().includes(filterValue));
   }
 }
-
-
 
