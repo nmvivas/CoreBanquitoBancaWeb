@@ -9,6 +9,7 @@ import { Router, RouterOutlet } from '@angular/router';
 import { CompanyShareService } from '../../../services/companyDetails.service';
 import { CommonModule } from '@angular/common';
 import { DataSharingService } from '../../../services/accountDetails.service';
+import { ReceivablesService } from '../../../services/receivables.service';
 
 @Component({
   selector: 'app-service-value',
@@ -22,19 +23,14 @@ import { DataSharingService } from '../../../services/accountDetails.service';
 
 export class ServiceValueComponent {
 
-
-
   number = '';
   currentBalance = '';
   company: any = {};
+  contrapartida = '';
+  deuda = '';
 
-
-  constructor(private router: Router, private companyShareService: CompanyShareService, private dataSharingService: DataSharingService) {
-
+  constructor(private router: Router, private companyShareService: CompanyShareService, private dataSharingService: DataSharingService, private receivablesService: ReceivablesService) {
   }
-
-
-  // En service-value.component.ts
   ngOnInit() {
     this.companyShareService.currentCompany.subscribe(company => {
       this.company = company?.companyName;
@@ -42,9 +38,18 @@ export class ServiceValueComponent {
     });
     this.number = this.dataSharingService.getAccountNumber();
     this.currentBalance = this.dataSharingService.getAccountBalance();
-
   }
 
+  fetchDebtorData() {
+    const companyId = '14'; 
+    this.receivablesService.getOrdersItems(this.contrapartida, companyId).subscribe(data => {
+      if (data && data.length > 0) {
+        console.log(data);
+        this.deuda = data[0].owedAmount;
+        console.log(this.deuda);
+      }
+    });
+  }
 
   redirectToNext = () => {
     this.router.navigate(['service-check']);

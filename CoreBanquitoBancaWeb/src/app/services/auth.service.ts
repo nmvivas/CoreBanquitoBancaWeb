@@ -1,14 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 
 })
 export class AuthenticationService {
-  private LOGIN_URL = environment.coreBankApiUrl + '/login'
+  private LOGIN_URL = environment.coreBankApiUrl + '/login';
 
   constructor(private http: HttpClient) { }
   login(userName: string, password: string): Observable<any> {

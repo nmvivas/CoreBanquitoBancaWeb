@@ -22,12 +22,13 @@
                 <input type="text"value={{company}} readonly >
                 <br>
                 <label for=""> Numero de Contrapartida: </label> <br>
-                <input type="text" >
+                <input type="text" id="contrapartida" [(ngModel)]="contrapartida">
                 <br>
                 <label for=""> Pago mes de mayo </label> <br>
+                <button (click)="fetchDebtorData()">Obtener Datos del Deudor</button>
 
                 <div class="label-center">
-                    <label for=""> Valor a pagar: $ 200.00</label>
+                    <label for=""> Valor a pagar: $ {{deuda}}</label>
                 </div>
             </div>
         </section>
