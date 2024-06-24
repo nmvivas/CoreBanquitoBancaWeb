@@ -27,7 +27,7 @@ export class TranferencesComponent implements OnInit {
 
   number = '';
   currentBalance = '';
-  monto ='';
+  monto = '';
   beneficiario = '';
   cuenta = '';
 
@@ -36,7 +36,6 @@ export class TranferencesComponent implements OnInit {
 
   ngOnInit(): void {
     this.number = this.dataSharingService.getAccountNumber();
-    console.log(this.dataSharingService.getAccountNumber());
     this.currentBalance = this.dataSharingService.getAccountBalance();
   }
 
@@ -45,15 +44,14 @@ export class TranferencesComponent implements OnInit {
       monto: this.monto,
       beneficiario: this.beneficiario,
       cuenta: this.cuenta
+      
     });
-
     localStorage.setItem('beneficiario', this.beneficiario);
     localStorage.setItem('monto', this.monto);
     localStorage.setItem('cuenta', this.cuenta);
-
-    console.log(this.cuenta);
     this.router.navigate(['tranferences-pago']);
   }
+  
 
   redirectToNext = () => {
   

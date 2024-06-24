@@ -148,6 +148,9 @@
     background-color: #ffffff;
 
   }
+  .wide-form-field {
+    width: 80%;
+  }
   
   .search-full-width {
     width: 200%;

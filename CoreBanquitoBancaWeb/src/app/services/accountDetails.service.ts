@@ -11,11 +11,11 @@ export class DataSharingService {
 
   constructor() {
     // Inicializar desde localStorage si existe
-    this.accountNumber = localStorage.getItem('accountNumber') || '';
-    this.accountBalance = localStorage.getItem('accountBalance') || '';
-    this.transferenciaData.beneficiario = localStorage.getItem('beneficiario') || '';
-    this.transferenciaData.monto = localStorage.getItem('monto') || '';
-    this.transferenciaData.cuenta = localStorage.getItem('cuenta') || '';
+    this.accountNumber = localStorage.getItem('accountNumber') ?? '';
+    this.accountBalance = localStorage.getItem('accountBalance') ?? '';
+    this.transferenciaData.beneficiario = localStorage.getItem('beneficiario') ?? '';
+    this.transferenciaData.monto = localStorage.getItem('monto') ?? '';
+    this.transferenciaData.cuenta = localStorage.getItem('cuenta') ?? '';
   }
 
   setAccountDetails(number: string, balance: string) {
@@ -37,7 +37,7 @@ export class DataSharingService {
   setTransferenciaData(data: { monto: string; beneficiario: string; cuenta: string }) {
     this.transferenciaData.beneficiario = data.monto;
     this.transferenciaData.cuenta = data.cuenta;
-    this.transferenciaData.beneficiario = data.cuenta;
+    this.transferenciaData.beneficiario = data.beneficiario;
     localStorage.setItem('beneficiario', data.beneficiario);
     localStorage.setItem('monto', data.monto);
     localStorage.setItem('cuenta', data.cuenta);
